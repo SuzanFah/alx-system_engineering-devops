@@ -1,0 +1,14 @@
+// Debugging Process for Apache 500 Error
+digraph {
+	A [label="500 Internal Server Error Detected" color=red style=filled]
+	B [label="Check Apache Error Logs" color=orange style=filled]
+	C [label="Identify Error in wp-settings.php" color=yellow style=filled]
+	D [label="Modify wp-settings.php" color=green style=filled]
+	E [label="Restart Apache Server" color=lightblue style=filled]
+	F [label="Check Website and Logs" color=purple style=filled]
+	A -> B [color=red]
+	B -> C [color=orange]
+	C -> D [color=yellow]
+	D -> E [color=green]
+	E -> F [color=blue]
+}
