@@ -1,12 +1,12 @@
-# This Puppet manifest configures Nginx to handle high traffic more effectively.
+# Fix problem of high amount of requests
 
-exec { 'fix--for-nginx':
-  command => '/usr/sbin/nginx -s reload',
-  path    => ['/usr/sbin', '/usr/bin'],
-  notify  => Service['nginx'],
+exec {'replace':
+  provider => shell,
+  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
+  before   => Exec['restart'],
 }
 
-service { 'nginx':
-  ensure => running,
-  enable => true,
+exec {'restart':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
